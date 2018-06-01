@@ -1,7 +1,7 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
 * Студент: [Anton Shumihin](https://up.htmlacademy.ru/javascript/14/user/455843).
-* Наставник: `Неизвестно`.
+* Наставник: [Александр Бренчев](https://up.htmlacademy.ru/javascript/14/user/59895).
 
 ---
 
