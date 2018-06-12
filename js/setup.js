@@ -44,22 +44,30 @@ var eyesColors = [
 ];
 
 var getRandomNumber = function (min, max) {
-  var rand = min + Math.random() * (max + 1 - min);
-
-  rand = Math.floor(rand);
-  return rand;
+  return Math.floor(Math.random() * (max + 1 - min) + min);
 };
 
 var showElement = function (element) {
   element.classList.remove('hidden');
 };
 
+var generateRandomWizardName = function (name, surname) {
+  var fullName = [
+    name[getRandomNumber(0, name.length)],
+    surname[getRandomNumber(0, surname.length)]
+  ];
+  return fullName.join(' ');
+};
+
+var getRandomArrElement = function (arr) {
+  return arr[getRandomNumber(0, arr.length)];
+};
+
 var getObjWizard = function (arrNames, arrSurnames, arrCoatColors, arrEyesColors) {
   var wizard = {};
-
-  wizard.name = arrNames[getRandomNumber(0, wizardNames.length - 1)] + ' ' + arrSurnames[getRandomNumber(0, wizardSurnames.length - 1)];
-  wizard.coatColor = arrCoatColors[getRandomNumber(0, arrCoatColors.length - 1)];
-  wizard.eyesColor = arrEyesColors[getRandomNumber(0, arrEyesColors.length - 1)];
+  wizard.name = generateRandomWizardName(arrNames, arrSurnames);
+  wizard.coatColor = getRandomArrElement(arrCoatColors);
+  wizard.eyesColor = getRandomArrElement(arrEyesColors);
   return wizard;
 };
 
@@ -72,7 +80,6 @@ var getArrWizards = function (amount) {
 
 var makeWizardItem = function (currentWizard) {
   var similar = similarList.cloneNode(true);
-
   similar.querySelector('.setup-similar-label').textContent = currentWizard.name;
   similar.querySelector('.wizard-coat').style.fill = currentWizard.coatColor;
   similar.querySelector('.wizard-eyes').style.fill = currentWizard.eyesColor;
@@ -82,7 +89,6 @@ var makeWizardItem = function (currentWizard) {
 var renderSimilarList = function (arr) {
   var fragment = document.createDocumentFragment();
   var list = document.querySelector('.setup-similar-list');
-
   for (var j = 0; j < arr.length; j++) {
     fragment.appendChild(makeWizardItem(arr[j]));
   }
