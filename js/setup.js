@@ -127,17 +127,21 @@ var onCloseSetupPressEnter = function (evt) {
 
 var openSetup = function () {
   showElement(setup);
-  showElement(setupSimilarList);
   document.addEventListener('keydown', onSetupPressEsc);
   setupClose.addEventListener('keydown', onCloseSetupPressEnter);
 };
 
 var closeSetup = function () {
   hideElement(setup);
-  hideElement(setupSimilarList);
   document.removeEventListener('keydown', onSetupPressEsc);
   setupClose.removeEventListener('keydown', onCloseSetupPressEnter);
 };
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === Keycode.ENTER) {
+    openSetup();
+  }
+});
 
 setupOpen.addEventListener('click', openSetup);
 setupClose.addEventListener('click', closeSetup);
@@ -162,3 +166,4 @@ setupPlayerFireball.addEventListener('click', function () {
 
 generateArrWizards(WIZARDS_AMOUNT, optionsGenerateWizard);
 renderSimilarList(wizards);
+showElement(setupSimilarList);
