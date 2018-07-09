@@ -135,6 +135,7 @@ var closeSetup = function () {
   hideElement(setup);
   document.removeEventListener('keydown', onSetupPressEsc);
   setupClose.removeEventListener('keydown', onCloseSetupPressEnter);
+  setup.removeAttribute('style');
 };
 
 setupOpen.addEventListener('keydown', function (evt) {
